@@ -4,9 +4,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import 'amfe-flexible/index'
-import './assets/less/reset.css'
+import './assets/less/index.less'
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,
