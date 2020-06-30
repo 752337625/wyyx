@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 		{
 		  path: '/recommend',
 			name: 'Recommend',
-		  component:() => import('../components/recommend/recommend'),
+		  component:() => import('../components/m-recommend/m-recommend'),
 		  children: []
 		},
 ]

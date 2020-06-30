@@ -1,9 +1,9 @@
 <template>
 	<div class="m-tab">
-		<router-link tag="div" to="/recommend" class="tab-item">
+		<router-link tag="div" to="/recommend" class="tab-item" exact>
 			  <span class="tab-link">推荐</span>
 		</router-link>
-		<router-link tag="div" to="/to" class="tab-item">
+		<router-link tag="div" to="/to" class="tab-item" exact>
 			  <span class="tab-link">歌手</span>
 		</router-link>
 		<router-link tag="div" to="/from" class="tab-item">
@@ -36,6 +36,7 @@
 					.tab-link{
 						color: @color-theme;
 						border-bottom: 2px solid @color-theme;
+						transition: all .3s;
 					}
 				}
 			}
