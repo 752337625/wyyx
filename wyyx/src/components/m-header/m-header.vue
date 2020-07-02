@@ -2,9 +2,9 @@
 	<div class="m-header">
 		<div class="icon"></div>
 		<h1 class="text">Chicken Music</h1>
-    <router-link to="/user" class="mine" tag="div">
-            <i class="icon-mine"></i>
-    </router-link>
+		<router-link to="/user" class="mine" tag="div">
+			<i class="icon-mine"></i>
+		</router-link>
 	</div>
 </template>
 <script>
@@ -19,7 +19,9 @@
 		height: 44px;
 		text-align: center;
 		color: @color-theme;
-	  font-size: 0;
+		font-size: 0;
+		background: @color-background;
+
 		.icon {
 			display: inline-block;
 			vertical-align: top;
@@ -30,23 +32,29 @@
 			.bg-image();
 			background-repeat: no-repeat;
 			background-size: 32px 30px;
-		}
-		.text{
+		} 
+
+		.text {
 			display: inline-block;
 			vertical-align: top;
-			font-size:@font-size-large;
+			font-size: @font-size-large;
 			line-height: 44px;
+			font-weight: 700;
+			color: @color-text;
+			letter-spacing: 3px;
 		}
-		.mine{
+
+		.mine {
 			position: absolute;
 			top: 0;
 			right: 0;
-			.icon-mine{
+
+			.icon-mine {
 				display: block;
 				vertical-align: top;
 				padding: 12px;
 				font-size: @font-size-large-x;
-				color: #ffcd32;
+				color: @color-text;
 			}
 		}
 	}

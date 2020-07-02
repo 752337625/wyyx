@@ -12,9 +12,15 @@ Vue.use(VueRouter)
 		  component:() => import('../components/m-recommend/m-recommend'),
 		  children: []
 		},
+		{
+			path:'/user',
+			component:()=>import('../components/user-center/user-center')
+		}
 ]
 
 const router = new VueRouter({
+	mode: 'hash',
+	base: process.env.BASE_URL,
   routes
 })
 

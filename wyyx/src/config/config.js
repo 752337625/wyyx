@@ -13,4 +13,6 @@ export const options = {
     param: 'jsonpCallback'
 }
   
-export const ERR_OK = 0
+export const ERR_OK = 0;
+export const ERR_OK_code = 200
+export const HOST = 'http://localhost:8081'

@@ -7,7 +7,8 @@
 		font-size: 100%;
 		font-weight: 400;
 		vertical-align: baseline;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+		pointer-events: auto;
   }
 
   html {
@@ -19,17 +20,32 @@
   html {
 		font-family: PingFang SC,STHeitiSC-Light,Helvetica-Light,arial,sans-serif,Droid Sans Fallback;
     height: 100%;
-    background-color: #222;
-    color: #fff;
+    background: #f2f3f4;
+    color: #2e3030;
   }
 
   a {
     text-decoration: none
   }
+	ul {
+	    list-style:none;
+	}
 /*横向或纵向滑动速度慢或者卡:只需要对滚动元素置*/
 .overflowScrolling {
 	-webkit-overflow-scrolling: touch;
 	overflow-scrolling: touch;
 }
 
-
+.my-bullet{
+	
+	display: inline-block;
+	margin: 0 4px;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: #f1f1f1;
+}
+.my-bullet-active{
+	 //border-radius: 5px;
+	 background: #fd6c62;
+}

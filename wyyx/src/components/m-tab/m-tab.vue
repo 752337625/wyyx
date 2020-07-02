@@ -25,17 +25,19 @@
 	    height: 44px;
 	    line-height: 44px;
 	    font-size: @font-size-medium;
+			background: @color-background;
 			.tab-item{
 				flex: 1;
 				text-align: center;
 				.tab-link{
 					padding-bottom: 5px;
-					color: hsla(0,0%,100%,.5);
+					color: @color-text-link;
 				}
 				&.router-link-active{
 					.tab-link{
-						color: @color-theme;
-						border-bottom: 2px solid @color-theme;
+						font-weight: 700;
+						color: @color-text;
+						border-bottom: 2px solid @color-text;
 						transition: all .3s;
 					}
 				}
