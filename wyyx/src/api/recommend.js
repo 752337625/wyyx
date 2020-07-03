@@ -5,7 +5,7 @@ import {
 	options,
 	HOST
 } from '@/config/config'
-export function getRecommend( ) {
+/* export function getRecommend( ) {
 	const url = 'https://c.y.qq.com/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg'
 	const data = Object.assign( {}, commonParams, {
 		platfrom: 'h5',
@@ -14,7 +14,15 @@ export function getRecommend( ) {
 	} )
 	//console.log(url,data)
 	return jsonp( url, data, options )
-}
+} */
+export function getRecommend( ) {
+	const url = 'http://120.79.162.149:3000/banner'
+	return axios.get( url ).then( ( res ) => {
+		return Promise.resolve( res.data )
+	} ).catch( ( err ) => {
+		return Promise.reject( err )
+	} )
+} 
 export function getDiscList( ) {
 	//const url = HOST+'/personalized';
 	const url = 'http://120.79.162.149:3000/personalized'

@@ -8,7 +8,6 @@
 		font-weight: 400;
 		vertical-align: baseline;
     -webkit-tap-highlight-color: transparent;
-		pointer-events: auto;
   }
 
   html {
@@ -20,6 +19,7 @@
   html {
 		font-family: PingFang SC,STHeitiSC-Light,Helvetica-Light,arial,sans-serif,Droid Sans Fallback;
     height: 100%;
+		overflow: hidden;
     background: #f2f3f4;
     color: #2e3030;
   }
@@ -44,8 +44,16 @@
 	height: 8px;
 	border-radius: 50%;
 	background: #f1f1f1;
+	    opacity: 0.2;
 }
 .my-bullet-active{
 	 //border-radius: 5px;
 	 background: #fd6c62;
+	 opacity: 1;
+}
+#app{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	
 }
