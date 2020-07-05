@@ -42,11 +42,15 @@
 					</ul>
 				</div>
 			</div>
+			<div class="loading-container" v-show="!discList.length">
+				<loading></loading>
+			</div>
 		</scroll>
 		<router-view></router-view>
 	</div>
 </template>
 <script>
+	import Loading from '@/base/loading/loading';
 	import 'swiper/css/swiper.css';
 	import {
 		Swiper,
@@ -68,11 +72,12 @@
 	} from 'vuex';
 	export default {
 		components: {
-			'scroll': ( ) => import( '@/base/scroll/scroll' ),
+			'scroll': () => import('@/base/scroll/scroll'),
+			Loading,
 			Swiper,
 			SwiperSlide
 		},
-		data( ) {
+		data() {
 			return {
 				swiperOption: {
 					pagination: {
@@ -81,77 +86,79 @@
 						bulletClass: 'my-bullet', //需设置.my-bullet样式
 						bulletActiveClass: 'my-bullet-active',
 					},
+					passiveListeners : false,
 					loop: true, //开启轮播图前后循环模式
 					autoplay: {
 						delay: 3000, //3秒切换一次
 						disableOnInteraction: false,
 					},
 					lazy: {
+						 loadPrevNext: true,
 						loadPrevNextAmount: 2,
 						loadOnTransitionStart: true,
 					},
 				},
-				recommends: [ ],
-				discList: [ ],
-				recommendMusic: [ ]
+				recommends: [],
+				discList: [],
+				recommendMusic: []
 			}
 		},
-		created( ) {
-			this._getRecommend( );
-			this._getDiscList( );
-			this._getRecommendMusic( )
+		created() {
+			this._getRecommend();
+			this._getDiscList();
+			this._getRecommendMusic()
 		},
 		methods: {
-			_getRecommend( ) {
-				getRecommend( ).then( ( res ) => {
-					if ( res.code === ERR_OK_code ) {
+			_getRecommend() {
+				getRecommend().then((res) => {
+					if (res.code === ERR_OK_code) {
 						this.recommends = res.banners
 					}
-				} ).catch( ( err ) => {
-					console.log( err )
-				} );
+				}).catch((err) => {
+					console.log(err)
+				});
 			},
-			_getDiscList( ) {
-				getDiscList( ).then( ( res ) => {
-					if ( res.code === ERR_OK_code ) {
+			_getDiscList() {
+				getDiscList().then((res) => {
+					if (res.code === ERR_OK_code) {
 						this.discList = res.result
 					} else {
-						console.error( 'getDiscList 获取失败' )
+						console.error('getDiscList 获取失败')
 					}
-				} ).catch( ( err ) => {
-					console.log( err )
-				} );
+				}).catch((err) => {
+					console.log(err)
+				});
 			},
-			_getRecommendMusic( ) {
-				getRecommendMusic( ).then( ( res ) => {
-					if ( res.code === ERR_OK_code ) {
+			_getRecommendMusic() {
+				getRecommendMusic().then((res) => {
+					if (res.code === ERR_OK_code) {
 						/* let list = res.data.result.map((item) => {
 						   return createRecommendSong(item)
 						 })
 						 list.splice(9) */
 						this.recommendMusic = res.result
 					} else {
-						console.error( 'getRecommendMusic 获取失败' )
+						console.error('getRecommendMusic 获取失败')
 					}
-				} ).catch( ( err ) => {
-					console.log( err )
-				} );
+				}).catch((err) => {
+					console.log(err)
+				});
 			},
-			selectItem( item ) {
-				this.$router.push( {
+			selectItem(item) {
+				this.$router.push({
 					path: `recommend/${item.id}`
-				} )
-				this.setMuiscList( item )
+				})
+				this.setMuiscList(item)
 			},
-			selectSong( item ) {
-				console.log( item )
+			selectSong(item) {
+				console.log(item)
 			},
-			...mapMutations( {
+			...mapMutations({
 				setMuiscList: 'SET_MUSIC_LIST',
 				setFullScreen: 'SET_FULL_SCREEN'
-			} ),
+			}),
 		},
-		computed: { ...mapState( {} ),
+		computed: { ...mapState({}),
 		},
 	}
 </script>
@@ -169,14 +176,23 @@
 			width: 100%;
 			height: 100%;
 			overflow: hidden;
+			position: relative;
+
+		}
+
+		.loading-container {
+			position: absolute;
+			width: 100%;
+			top: 50%;
+			transform: translateY(-50%);
 		}
 
 		.decorate {
-			position: absolute;
-			z-index: -10;
-			top: -158px;
 			width: 100%;
 			height: 293px;
+			position: absolute;
+			top: -158px;
+			z-index: -10;
 			background-color: @color-background;
 		}
 
@@ -185,6 +201,7 @@
 			margin: 0 auto;
 			overflow: hidden;
 			border-radius: 5px;
+
 			.swiper-item {
 				img {
 					width: 100%;
@@ -261,5 +278,6 @@
 				color: @color-text-g;
 			}
 		}
+
 	}
 </style>

@@ -6,7 +6,6 @@ const Recommend = {
 	} ),
 	mutations: {
 		[types.SET_MUSIC_LIST] (state, musicList) {
-			console.log(state, musicList)
 		  state.musicList = musicList
 		},
 	},

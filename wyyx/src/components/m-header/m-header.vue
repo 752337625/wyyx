@@ -1,7 +1,8 @@
 <template>
 	<div class="m-header">
-		<div class="icon"></div>
-		<h1 class="text">Chicken Music</h1>
+		<!-- <div class="icon"></div> -->
+		<!-- <h1 class="text">Chicken Music</h1> -->
+		<h1 class="text">我的网易云</h1>
 		<router-link to="/user" class="mine" tag="div">
 			<i class="icon-mine"></i>
 		</router-link>
