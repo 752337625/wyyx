@@ -9,12 +9,21 @@ const routes = [ {
 	name: 'Recommend',
 	component: ( ) => import( '../components/m-recommend/m-recommend' ),
 	children: [ {
-		path: ':id',
+		path: 'musiclist/:id',
 		component: ( ) => import( '../components/music-list/music-list' )
 	} ]
 }, {
 	path: '/user',
 	component: ( ) => import( '../components/user-center/user-center' )
+}, {
+	path: '/singer',
+	component: ( ) => import( '../components/singer/singer' )
+}, {
+	path: '/rank',
+	component: ( ) => import( '../components/rank/rank' )
+}, {
+	path: '/seach',
+	component: ( ) => import( '../components/m-seach/m-seach' )
 } ]
 const router = new VueRouter( {
 	mode: 'hash',

@@ -57,6 +57,7 @@
 				width: 50px;
 				text-align: center;
 				color: @color-text-g;
+				font-size: @font-size-large-x;
 			}
 
 			.content {

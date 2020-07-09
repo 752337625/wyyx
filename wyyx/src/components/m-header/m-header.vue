@@ -6,6 +6,9 @@
 		<router-link to="/user" class="mine" tag="div">
 			<i class="icon-mine"></i>
 		</router-link>
+		<router-link to="/seach" class="seach" tag="div">
+			<i class="iconfont icon-search"></i>
+		</router-link>
 	</div>
 </template>
 <script>
@@ -33,7 +36,7 @@
 			.bg-image();
 			background-repeat: no-repeat;
 			background-size: 32px 30px;
-		} 
+		}
 
 		.text {
 			display: inline-block;
@@ -48,9 +51,23 @@
 		.mine {
 			position: absolute;
 			top: 0;
-			right: 0;
+			left: 0;
 
 			.icon-mine {
+				display: block;
+				vertical-align: top;
+				padding: 12px;
+				font-size: @font-size-large-x;
+				color: @color-text;
+			}
+		}
+
+		.seach {
+			position: absolute;
+			top: 0;
+			right: 0;
+
+			.icon-search {
 				display: block;
 				vertical-align: top;
 				padding: 12px;

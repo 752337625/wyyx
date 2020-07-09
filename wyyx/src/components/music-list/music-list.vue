@@ -7,7 +7,8 @@
 					<h1 class="title">{{headerTitle}}</h1>
 				</div>
 			</div>
-			<scroll class="list" ref="list" @scroll="scroll" :listenScroll="listenScroll" :probeType="probeType" :data="listDetail">
+			<scroll class="list" ref="list" @scroll="scroll" :bounce="bounce" :listenScroll="listenScroll" :probeType="probeType"
+			 :data="listDetail">
 				<div class="music-list-wrapper">
 					<div class="bg-image" :style="bgStyle" ref="bgImage">
 						<div class="filter"></div>
@@ -47,95 +48,101 @@
 		createRecommendListSong
 	} from '@/util/song'
 	import {
-		mapState
+		mapState,
+		mapActions
 	} from 'vuex'
 	import scroll from '@/base/scroll/scroll'
 	export default {
-		data() {
+		data( ) {
 			return {
-				listDetail: [],
+				listDetail: [ ],
 				headerTitle: '歌单',
 				scrollY: 0,
-				//listenScroll: true,
-				//probeType: 3
+				bounce: {
+					top: false,
+					bottom: true,
+					left: false,
+					right: false
+				}
 			}
 		},
 		components: {
 			scroll,
-			//'scroll': () => import('@/base/scroll/scroll'),
-			'song-list': () => import('@/base/song-list/song-list'),
-			'loading': () => import('@/base/loading/loading')
+			'song-list': ( ) => import( '@/base/song-list/song-list' ),
+			'loading': ( ) => import( '@/base/loading/loading' )
 		},
-		created() {
-			this._getRecommendListDetail(this.musicList.id)
+		created( ) {
+			this._getRecommendListDetail( this.musicList.id )
 			this.probeType = 3
 			this.listenScroll = true
 		},
-		mounted() {
+		mounted( ) {
 			this.imageHeight = this.$refs.bgImage.clientHeight
 			this.minTranslateY = -this.imageHeight + RESERVED_HEIGHT
-
 		},
 		methods: {
-			scroll(pos) {
+			scroll( pos ) {
 				this.scrollY = pos.y
 			},
-			_getRecommendListDetail(id) {
-				if (!id) {
-					this.$router.push('/recommend')
+			_getRecommendListDetail( id ) {
+				if ( !id ) {
+					this.$router.push( '/recommend' )
 					return
 				}
-				getRecommendListDetail(id).then((res) => {
-					if (res.code === ERR_OK_code) {
-						this.listDetail = res.result.tracks.map((item) => {
-							return createRecommendListSong(item)
-						})
+				getRecommendListDetail( id ).then( ( res ) => {
+					if ( res.code === ERR_OK_code ) {
+						this.listDetail = res.result.tracks.map( ( item ) => {
+							return createRecommendListSong( item )
+						} )
 					} else {
-						console.error('getRecommendListDetail 获取失败！')
+						console.error( 'getRecommendListDetail 获取失败！' )
 					}
-				}).catch((err) => {
-					console.log(err)
-				})
+				} ).catch( ( err ) => {
+					console.log( err )
+				} )
 			},
-			sequence() {},
-			selectItem() {
-
+			sequence( ) {},
+			selectItem( ) {
+				
 			},
-			back() {
-				this.$router.back()
-			}
+			back( ) {
+				this.$router.back( )
+			},
+			...mapActions({
+				
+			})
 		},
-		computed: {
-			...mapState({
+		computed: { 
+			...mapState( {
 				'musicList': state => state.Recommend.musicList
-			}),
-			title() {
+			} ),
+			title( ) {
 				return this.musicList.name
 			},
-			bgStyle() {
+			bgStyle( ) {
 				return `background-image: url(${this.musicList.picUrl})`
 			},
-			playCount() {
-				if (!this.musicList.playCount) {
+			playCount( ) {
+				if ( !this.musicList.playCount ) {
 					return
 				}
-				if (this.musicList.playCount < 1e5) {
-					return Math.floor(this.musicList.playCount)
+				if ( this.musicList.playCount < 1e5 ) {
+					return Math.floor( this.musicList.playCount )
 				} else {
-					return Math.floor(this.musicList.playCount / 10000) + '万'
+					return Math.floor( this.musicList.playCount / 10000 ) + '万'
 				}
 			},
 		},
 		watch: {
-			scrollY(newY) {
+			scrollY( newY ) {
 				// let translateY = Math.max(this.minTranslateY, newY)
-				const percent = Math.abs(newY / this.imageHeight)
-				if (newY < (this.minTranslateY + RESERVED_HEIGHT - 20)) {
+				const percent = Math.abs( newY / this.imageHeight )
+				if ( newY < ( this.minTranslateY + RESERVED_HEIGHT - 20 ) ) {
 					this.headerTitle = this.musicList.name
 				} else {
 					this.headerTitle = '歌单'
 				}
-				if (newY < 0) {
+				if ( newY < 0 ) {
 					this.$refs.header.style.background = `rgba(212, 68, 57, ${percent})`
 				} else {
 					this.$refs.header.style.background = `rgba(212, 68, 57, 0)`
@@ -145,8 +152,6 @@
 				// console.log(translateY)
 			}
 		}
-
-
 	}
 </script>
 <style lang="less" scoped>
@@ -180,35 +185,34 @@
 		background: @color-background-list;
 
 		.header {
+			position: fixed;
+			top: 0;
+			z-index: 100;
 			width: 100%;
 			height: 44px;
 			color: #fff;
-			background-color: rgba(212, 68, 57, 0);
-			position: fixed;
-			top: 0;
-			line-height: 44px;
-			z-index: 100;
 
 			.back {
 				position: absolute;
 				top: 0;
 				left: 4px;
+				line-height: 44px;
 
 				.fa-angle-left {
-					padding: 5px 10px;
+					line-height: 30px;
 					font-size: 30px;
-
+					padding: 6px 10px !important;
 				}
 			}
 
 			.text {
 				position: absolute;
 				left: 38px;
-				font-size: 16px;
+				padding: 12px 0;
+				font-size: @font-size-medium-x;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
-
 			}
 		}
 
@@ -261,10 +265,8 @@
 							bottom: -16px;
 							font-size: @font-size-small ;
 						}
-
 					}
 				}
-
 			}
 
 			.song-list-wrapper {

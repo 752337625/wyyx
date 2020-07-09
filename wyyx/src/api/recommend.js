@@ -16,7 +16,7 @@ import {
 	return jsonp( url, data, options )
 } */
 export function getRecommend( ) {
-	const url = 'http://120.79.162.149:3000/banner'
+	const url ='http://120.79.162.149:3000/banner'
 	return axios.get( url ).then( ( res ) => {
 		return Promise.resolve( res.data )
 	} ).catch( ( err ) => {
@@ -25,7 +25,7 @@ export function getRecommend( ) {
 } 
 export function getDiscList( ) {
 	//const url = HOST+'/personalized';
-	const url = 'http://120.79.162.149:3000/personalized'
+	const url ='http://120.79.162.149:3000/personalized'
 	return axios.get( url ).then( ( res ) => {
 		return Promise.resolve( res.data )
 	} ).catch( ( err ) => {

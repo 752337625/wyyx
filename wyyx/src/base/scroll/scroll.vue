@@ -21,10 +21,19 @@
 				type: Boolean,
 				default: true
 			},
+			momentum: {
+				type: Boolean,
+				default: true
+			},
 			//是否开启横向滚动
 			scrollX: {
 				type: Boolean,
 				default: false
+			},
+			//是否开启纵向滚动
+			scrollY: {
+				type: Boolean,
+				default: true
 			},
 			bounce: {
 				type: Object,
@@ -82,8 +91,9 @@
 					probeType: this.probeType,
 					click: this.click,
 					scrollX: this.scrollX,
+					scrollY:this.scrollY,
 					bounce: this.bounce,
-					momentum:true
+					momentum:this.momentum
 
 				})
 

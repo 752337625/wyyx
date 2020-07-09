@@ -66,7 +66,7 @@ import {playlistMixin} from '@/common/js/mixin' */
 
 		&.slide-enter,
 		&.slide-leave-to {
-			transform: translate3d(50%, 0, 0);
+			transform: translate3d(-50%, 0, 0);
 			opacity: 0;
 		}
 

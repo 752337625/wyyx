@@ -15,5 +15,5 @@ export const options = {
 
 export const ERR_OK = 0;
 export const ERR_OK_code = 200
-export const HOST = 'http://localhost:8081'
+export const HOST = process.env.NODE_ENV == 'development' ? 'http://localhost:3000' :'http://120.79.162.149:3000'
 export const RESERVED_HEIGHT = 44
