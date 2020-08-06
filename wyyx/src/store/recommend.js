@@ -9,7 +9,12 @@ const Recommend = {
 		  state.musicList = musicList
 		},
 	},
-	actions: {},
+	actions: {
+		insertSong({commit,state},song){
+			console.log(state,song)
+		}
+		
+	},
 	modules: {},
 	getters: {} 
 }

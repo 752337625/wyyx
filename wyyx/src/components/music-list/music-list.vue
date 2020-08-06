@@ -103,13 +103,17 @@
 			},
 			sequence( ) {},
 			selectItem( ) {
+				this.selectPlay({
+				    list: this.songs,
+				    index
+				})
 				
 			},
 			back( ) {
 				this.$router.back( )
 			},
 			...mapActions({
-				
+				'selectPlay',
 			})
 		},
 		computed: { 
